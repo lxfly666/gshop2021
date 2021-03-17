@@ -6,7 +6,10 @@ import {
   RESET_USER_INFO,
   RECEIVE_INFO,
   RECEIVE_RATINGS,
-  RECEIVE_GOODS
+  RECEIVE_GOODS,
+  INCREMENT_GOOD_COUNT,
+  DECREMENT_GOOD_COUNT,
+  CLEAR_CART
 } from './mutation-types'
 
 import {
@@ -89,6 +92,17 @@ export default {
     }
   },
 
+  updateFoodCount({commit,state},{isAdd,food}){
+    if(isAdd){
+      commit(INCREMENT_GOOD_COUNT,{food})
+    }else{
+      commit(DECREMENT_GOOD_COUNT,{food})
+    }
+  },
+
+  clearCart({commit,state}){
+    commit(CLEAR_CART)
+  }
 
 }
 
