@@ -26,3 +26,5 @@ export const reqShopInfo = () => ajax('/shop_info');
 export const reqShopRatings = () => ajax('/shop_ratings');
 
 export const reqShopGoods = () => ajax('/shop_goods');
+
+

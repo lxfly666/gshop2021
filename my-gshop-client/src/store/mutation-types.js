@@ -9,5 +9,6 @@ export const RECEIVE_GOODS = 'receive_goods'
 export const INCREMENT_GOOD_COUNT = 'increment_good_count'
 export const DECREMENT_GOOD_COUNT = 'decrement_good_count'
 export const CLEAR_CART = 'clear_cart'
+export const RECEIVE_SEARCH_SHOP = 'receive_search_shop'
 
 

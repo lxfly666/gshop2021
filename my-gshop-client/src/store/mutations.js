@@ -9,7 +9,8 @@ import {
   RECEIVE_GOODS,
   INCREMENT_GOOD_COUNT,
   DECREMENT_GOOD_COUNT,
-  CLEAR_CART
+  CLEAR_CART,
+  RECEIVE_SEARCH_SHOP
 } from './mutation-types'
 
 import Vue from 'vue'
@@ -61,6 +62,9 @@ export default {
       food.count = 0
     })
     state.cartFoods = []
-  }
+  },
 
+  [RECEIVE_SEARCH_SHOP](state,{searchShops}){
+    state.searchShops = searchShops
+  }
 }

@@ -9,7 +9,8 @@ import {
   RECEIVE_GOODS,
   INCREMENT_GOOD_COUNT,
   DECREMENT_GOOD_COUNT,
-  CLEAR_CART
+  CLEAR_CART,
+  RECEIVE_SEARCH_SHOP
 } from './mutation-types'
 
 import {
@@ -20,7 +21,8 @@ import {
   reqLogout,
   reqShopInfo,
   reqShopRatings,
-  reqShopGoods
+  reqShopGoods,
+  reqSearchShop
 } from '../api'
 
 export default {
@@ -66,11 +68,12 @@ export default {
     }
   },
 
-  async getShopRatings({commit}) {
+  async getShopRatings({commit},callback) {
     const result = await reqShopRatings();
     if(result.code===0){
       const ratings = result.data;
       commit(RECEIVE_RATINGS, {ratings});
+      callback&&callback()
     }
   },
 
@@ -102,8 +105,19 @@ export default {
 
   clearCart({commit,state}){
     commit(CLEAR_CART)
-  }
+  },
 
+  async searchShops({commit, state}, keyword) {
+    const geohash = state.latitude + ',' + state.longitude
+    const result = await reqSearchShop(geohash, keyword)
+    if(result.code === 0){
+      const searchShops = result.data
+      commit(RECEIVE_SEARCH_SHOP,{searchShops});
+    }else{
+      const arr = []
+      commit(RECEIVE_SEARCH_SHOP,{arr});
+    }
+  }
 }
 
 
